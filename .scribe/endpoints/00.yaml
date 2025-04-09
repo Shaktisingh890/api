@@ -35,16 +35,7 @@ endpoints:
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses:
-      -
-        status: 200
-        content: '{"code":200,"message":"Product fetched successfully","data":{"id":1,"code":"P_1","category_name":"Liver-Care","category_id":"3","subcategory_name":null,"subcategory_id":"Select Subcategory","product_name":"EN Liver","slug":"EN-Liver","productheading":"EN Liver \u00e2\u20ac\u201c Keeps your liver healthy & prevents various liver diseases","price":599,"dis_percentage":"","dis_price":199,"product_detail":"Calcium rich bone health capsule makes your bones strong.\npreventing many bone problems.","description":"Calcium rich bone health capsule makes your bones strong, preventing many bone problems","availability":null,"availability_id":"","image1":"67bd682d2479esubproduct-1.jpg","image2":"67c005318b81f1-1.jpg","image3":"67c005318ba953-1.png","image4":"67c005318bcb61-1.jpg","image5":"67c005318be371-1 (1).jpg","image6":null,"status":"Active","date":"Feb 27, 2025","time":"06:24 am","color":0,"color_id":0,"color_name":"","size_id":1,"size_name":"S","sku":"P-1","jewellery_care":"Calcium rich bone health capsule makes your bones strong, preventing many bone problems","shipping_info":"Calcium rich bone health capsule makes your bones strong, preventing many bone problems","length":"12","breadth":"12","height":"12","weight":"12","stock":10,"images":null}}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
-        custom: []
+    responses: []
     responseFields: []
     auth: []
     controller: null

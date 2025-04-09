@@ -10,7 +10,11 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libxml2-dev \
     libzip-dev \
-    && docker-php-ext-install pdo_mysql mbstring zip exif pcntl
+    && docker-php-ext-install pdo_mysql mbstring zip exif pcntl \
+    \
+    # 🔥 ADD THIS: Install Redis extension via PECL
+    && pecl install redis \
+    && docker-php-ext-enable redis
 
 # Set working directory
 WORKDIR /var/www

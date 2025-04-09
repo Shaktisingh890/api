@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Http\Controllers\Controller;
 use Throwable;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Cache;
 
 class ProductController extends Controller
 {
@@ -21,7 +22,10 @@ class ProductController extends Controller
     public function getAllProducts()
     {
         try {
-            $products = Product::all();
+
+            $products = Cache::remember('all_products',now()->addMinutes(60),function(){
+                return Product::all();
+            });
             if (!$products) {
                 return ApiResponse::error('401', "Product Not Found");
             }
@@ -229,6 +233,8 @@ class ProductController extends Controller
 
             if ($product->isDirty()) {
                 $product->save();
+                 // Clear Redis cache for product listing
+            Cache::forget('all_products');
                 return ApiResponse::success(200, 'Product updated successfully', $product);
             } else {
                 return ApiResponse::success(200, 'No changes made to product');
@@ -254,6 +260,8 @@ class ProductController extends Controller
             if (!$product->delete()) {
                 return ApiResponse::error('500', "Product could not be deleted");
             }
+                    // Clear the cached list of all products
+              Cache::forget('all_products');
 
             return ApiResponse::success(200, 'Product deleted successfully');
         } catch (Throwable $e) {
@@ -279,6 +287,9 @@ class ProductController extends Controller
             foreach ($products as $product) {
                 $product->delete();
             }
+
+             // Clear Redis cache for product listing
+             Cache::forget('all_products');
 
             return ApiResponse::success(200, 'All products deleted successfully');
         } catch (Throwable $e) {
