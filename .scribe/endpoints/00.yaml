@@ -1,0 +1,444 @@
+name: Products
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/products/getProducts/{id}'
+    metadata:
+      groupName: Products
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get a single product by ID.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the product.'
+        required: true
+        example: '1'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: '1'
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"code":200,"message":"Product fetched successfully","data":{"id":1,"code":"P_1","category_name":"Liver-Care","category_id":"3","subcategory_name":null,"subcategory_id":"Select Subcategory","product_name":"EN Liver","slug":"EN-Liver","productheading":"EN Liver \u00e2\u20ac\u201c Keeps your liver healthy & prevents various liver diseases","price":599,"dis_percentage":"","dis_price":199,"product_detail":"Calcium rich bone health capsule makes your bones strong.\npreventing many bone problems.","description":"Calcium rich bone health capsule makes your bones strong, preventing many bone problems","availability":null,"availability_id":"","image1":"67bd682d2479esubproduct-1.jpg","image2":"67c005318b81f1-1.jpg","image3":"67c005318ba953-1.png","image4":"67c005318bcb61-1.jpg","image5":"67c005318be371-1 (1).jpg","image6":null,"status":"Active","date":"Feb 27, 2025","time":"06:24 am","color":0,"color_id":0,"color_name":"","size_id":1,"size_name":"S","sku":"P-1","jewellery_care":"Calcium rich bone health capsule makes your bones strong, preventing many bone problems","shipping_info":"Calcium rich bone health capsule makes your bones strong, preventing many bone problems","length":"12","breadth":"12","height":"12","weight":"12","stock":10,"images":null}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/products/getAllProducts
+    metadata:
+      groupName: Products
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get all products.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: "{\r\n    \"code\": 200,\r\n    \"message\": \"Product fetched successfully\",\r\n    \"data\": [\r\n      {\r\n        \"id\": 1,\r\n        \"code\": \"P_1\",\r\n        \"category_name\": \"Liver-Care\",\r\n        \"category_id\": \"3\",\r\n        \"subcategory_name\": null,\r\n        \"subcategory_id\": \"Select Subcategory\",\r\n        \"product_name\": \"EN Liver\",\r\n        \"slug\": \"EN-Liver\",\r\n        \"productheading\": \"EN Liver â€“ Keeps your liver healthy & prevents various liver diseases\",\r\n        \"price\": 599,\r\n        \"dis_percentage\": \"\",\r\n        \"dis_price\": 199,\r\n        \"product_detail\": \"Calcium rich bone health capsule makes your bones strong.\\npreventing many bone problems.\",\r\n        \"description\": \"Calcium rich bone health capsule makes your bones strong, preventing many bone problems\",\r\n        \"availability\": null,\r\n        \"availability_id\": \"\",\r\n        \"image1\": \"67bd682d2479esubproduct-1.jpg\",\r\n        \"image2\": \"67c005318b81f1-1.jpg\",\r\n        \"image3\": \"67c005318ba953-1.png\",\r\n        \"image4\": \"67c005318bcb61-1.jpg\",\r\n        \"image5\": \"67c005318be371-1 (1).jpg\",\r\n        \"image6\": null,\r\n        \"status\": \"Active\",\r\n        \"date\": \"Feb 27, 2025\",\r\n        \"time\": \"06:24 am\",\r\n        \"color\": 0,\r\n        \"color_id\": 0,\r\n        \"color_name\": \"\",\r\n        \"size_id\": 1,\r\n        \"size_name\": \"S\",\r\n        \"sku\": \"P-1\",\r\n        \"jewellery_care\": \"Calcium rich bone health capsule makes your bones strong, preventing many bone problems\",\r\n        \"shipping_info\": \"Calcium rich bone health capsule makes your bones strong, preventing many bone problems\",\r\n        \"length\": \"12\",\r\n        \"breadth\": \"12\",\r\n        \"height\": \"12\",\r\n        \"weight\": \"12\",\r\n        \"stock\": 10,\r\n        \"images\": null\r\n      },\r\n      {\r\n        \"id\": 2,\r\n        \"code\": \"P_2\",\r\n        \"category_name\": \"Digestive-Care\",\r\n        \"category_id\": \"1\",\r\n        \"subcategory_name\": \"Shop By Category\",\r\n        \"subcategory_id\": \"2\",\r\n        \"product_name\": \"EN Pure Shilajit\",\r\n        \"slug\": \"EN- Pure- Shilajit\",\r\n        \"productheading\": \"At En-Health, quality means delivering premium natural health solutions designed to support effective and consistent outcomes for your well-being. Our extensive range of liquid extracts, tablets, and capsules is inspired by foundational naturopathic princ\",\r\n        \"price\": 999,\r\n        \"dis_percentage\": \"\",\r\n        \"dis_price\": 799,\r\n        \"product_detail\": \"Improve energy and stamina.Improve function of brain and memory.Reduce Inflammation and swelling.Boost Immune system.Protect cellular damage and slow down aging process.Improve the absorption of the nutrients.Support overall health and well being\",\r\n        \"description\": \"<p>Improve energy and stamina.Improve function of brain and memory.Reduce Inflammation and swelling.Boost Immune system.Protect cellular damage and slow down aging process.Improve the absorption of the nutrients.Support overall health and well being</p>\\n\",\r\n        \"availability\": null,\r\n        \"availability_id\": \"\",\r\n        \"image1\": \"67bd685234826product-2.jpg\",\r\n        \"image2\": \"67c2ea9d86e31shilajit2.jpg\",\r\n        \"image3\": \"67c2ea9d8704dshilajit3.jpg\",\r\n        \"image4\": \"67c2ea9d871d8shilajit3.jpg\",\r\n        \"image5\": \"67c2ea9d8760cshilajit4.jpg\",\r\n        \"image6\": null,\r\n        \"status\": \"Active\",\r\n        \"date\": \"Mar 01, 2025\",\r\n        \"time\": \"11:08 am\",\r\n        \"color\": 0,\r\n        \"color_id\": 0,\r\n        \"color_name\": \"\",\r\n        \"size_id\": 1,\r\n        \"size_name\": \"S,M\",\r\n        \"sku\": \"gfffgf\",\r\n        \"jewellery_care\": \"Improve energy and stamina.Improve function of brain and memory.Reduce Inflammation and swelling.Boost Immune system.Protect cellular damage and slow down aging process.Improve the absorption of the nutrients.Support overall health and well being\",\r\n        \"shipping_info\": \"Improve energy and stamina.Improve function of brain and memory.Reduce Inflammation and swelling.Boost Immune system.Protect cellular damage and slow down aging process.Improve the absorption of the nutrients.Support overall health and well being\",\r\n        \"length\": \"12\",\r\n        \"breadth\": \"12\",\r\n        \"height\": \"8\",\r\n        \"weight\": \"0.4\",\r\n        \"stock\": 3,\r\n        \"images\": null\r\n      }\r\n     \r\n    ]\r\n  }"
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/products/deleteProduct/{id}'
+    metadata:
+      groupName: Products
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Delete a product by ID.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'Product ID to delete.'
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: consequatur
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: api/v1/products/deleteAllProducts
+    metadata:
+      groupName: Products
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Delete all products.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/products/newProduct
+    metadata:
+      groupName: Products
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Store a newly created product.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      product_name:
+        name: product_name
+        description: 'The name of the product.'
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      price:
+        name: price
+        description: 'The price of the product.'
+        required: true
+        example: 11613.31890586
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      productheading:
+        name: productheading
+        description: 'Short heading or tagline.'
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      color_id:
+        name: color_id
+        description: 'Color ID reference.'
+        required: true
+        example: 17
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      size_id:
+        name: size_id
+        description: 'Size ID reference.'
+        required: true
+        example: 17
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      size_name:
+        name: size_name
+        description: 'Size name.'
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      sku:
+        name: sku
+        description: 'SKU code.'
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      jewellery_care:
+        name: jewellery_care
+        description: 'Care instructions.'
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      shipping_info:
+        name: shipping_info
+        description: 'Shipping description.'
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      length:
+        name: length
+        description: 'Product length.'
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      breadth:
+        name: breadth
+        description: 'Product breadth.'
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      height:
+        name: height
+        description: 'Product height.'
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      weight:
+        name: weight
+        description: 'Product weight.'
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      stock:
+        name: stock
+        description: 'Available stock.'
+        required: true
+        example: 17
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      images:
+        name: images
+        description: 'Product images.'
+        required: true
+        example:
+          - null
+        type: 'file[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      product_name: consequatur
+      price: 11613.31890586
+      productheading: consequatur
+      color_id: 17
+      size_id: 17
+      size_name: consequatur
+      sku: consequatur
+      jewellery_care: consequatur
+      shipping_info: consequatur
+      length: consequatur
+      breadth: consequatur
+      height: consequatur
+      weight: consequatur
+      stock: 17
+    fileParameters:
+      images:
+        - null
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/v1/products/updateProduct/{id}'
+    metadata:
+      groupName: Products
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update product by ID.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'Product ID to update.'
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: consequatur
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      price:
+        name: price
+        description: 'The updated price.'
+        required: false
+        example: 11613.31890586
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      product_name:
+        name: product_name
+        description: 'The updated product name.'
+        required: false
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      productheading:
+        name: productheading
+        description: 'Updated heading.'
+        required: false
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      images:
+        name: images
+        description: 'Optional new product images.'
+        required: false
+        example:
+          - null
+        type: 'file[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      price: 11613.31890586
+      product_name: consequatur
+      productheading: consequatur
+    fileParameters:
+      images:
+        - null
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
