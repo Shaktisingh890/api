@@ -63,70 +63,62 @@ class AuthController extends Controller
         }
     }
 
-    public function sign_in(Request $request)
-    {
-        /**
-         * User Login
-         *
-         * This endpoint allows users to log in using their email and password.
-         * A valid Sanctum token will be returned upon successful login.
-         * 
-         * @group Authentication
-         * @bodyParam email string required The email of the user. Example: user@example.com
-         * @bodyParam password string required The password (8-10 characters). Example: secret123
-         *
-         * @response 200 {
-         *   "status": true,
-         *   "message": "Login Successfully",
-         *   "data": {
-         *     "id": 1,
-         *     "name": "John Doe",
-         *     "email": "user@example.com",
-         *     "apitoken": "1|xyz123abc..."
-         *   }
-         * }
-         *
-         * @response 402 {
-         *   "status": false,
-         *   "message": "Invalid Credentials"
-         * }
-         *
-         * @response 500 {
-         *   "status": false,
-         *   "message": "Something Went Wrong ..."
-         * }
-         */
-        try {
-            // Validate email and password input
-            $request->validate([
-                'email' => 'required|email',
-                'password' => 'required|string|min:8|max:10',
-            ]);
+    /**
+ * User Login
+ *
+ * This endpoint allows users to log in using their email and password.
+ * A valid Sanctum token will be returned upon successful login.
+ * 
+ * @group Authentication
+ * @bodyParam email string required The email of the user. Example: user@example.com
+ * @bodyParam password string required The password (8-10 characters). Example: secret123
+ *
+ * @response 200 {
+ *   "status": true,
+ *   "message": "Login Successfully",
+ *   "data": {
+ *     "id": 1,
+ *     "name": "John Doe",
+ *     "email": "user@example.com",
+ *     "apitoken": "1|xyz123abc..."
+ *   }
+ * }
+ *
+ * @response 402 {
+ *   "status": false,
+ *   "message": "Invalid Credentials"
+ * }
+ *
+ * @response 500 {
+ *   "status": false,
+ *   "message": "Something Went Wrong ..."
+ * }
+ */
+public function sign_in(Request $request)
+{
+    try {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string|min:8|max:10',
+        ]);
 
-            // Find the user by email
-            $user = User::where('email', $request->input('email'))->first();
+        $user = User::where('email', $request->input('email'))->first();
 
-            // If user not found, return error
-            if (!$user) {
-                return ApiResponse::error(402, 'User not found');
-            }
-
-            // Check if the password matches the stored hash
-            if (!Hash::check($request->input('password'), $user->password)) {
-                return ApiResponse::error(402, 'Invalid Credentials');
-            }
-
-            // Create a new Sanctum token for the user
-            $token = $user->createToken('auth-token')->plainTextToken;
-
-            // Append token to user object to return to frontend
-            $user['apitoken'] = $token;
-
-            // Return success response with user data and token
-            return ApiResponse::success(200, 'Login Successfully', $user);
-        } catch (Throwable $e) {
-            // Catch any unexpected errors and return a server error response
-            return ApiResponse::error(500, "Something Went Wrong " . $e->getMessage());
+        if (!$user) {
+            return ApiResponse::error(402, 'User not found');
         }
+
+        if (!Hash::check($request->input('password'), $user->password)) {
+            return ApiResponse::error(402, 'Invalid Credentials');
+        }
+
+        $token = $user->createToken('auth-token')->plainTextToken;
+        $user['apitoken'] = $token;
+
+        return ApiResponse::success(200, 'Login Successfully', $user);
+    } catch (Throwable $e) {
+        return ApiResponse::error(500, "Something Went Wrong " . $e->getMessage());
     }
+}
+
 }

@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use Throwable;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
+
 
 class ProductController extends Controller
 {
@@ -18,12 +20,14 @@ class ProductController extends Controller
      * @group Products
      * @responseFile storage/responses/products.index.json
      * @return \Illuminate\Http\JsonResponse
+     * @authenticated
+     * @header Authorization Bearer {token}
      */
     public function getAllProducts()
     {
         try {
 
-            $products = Cache::remember('all_products',now()->addMinutes(60),function(){
+            $products = Cache::remember('all_products', now()->addMinutes(60), function () {
                 return Product::all();
             });
             if (!$products) {
@@ -42,6 +46,9 @@ class ProductController extends Controller
      * @group Products
      * @urlParam id required The ID of the product. Example: 1
      * @return \Illuminate\Http\JsonResponse
+     * @authenticated
+     * @header Authorization Bearer {token}
+
      */
     public function show($id)
     {
@@ -73,6 +80,9 @@ class ProductController extends Controller
      * @bodyParam stock integer required Available stock.
      * @bodyParam images file[] required Product images.
      * @return \Illuminate\Http\JsonResponse
+     * @authenticated
+     * @header Authorization Bearer {token}
+
      */
     public function newProduct(Request $request)
     {
@@ -112,7 +122,7 @@ class ProductController extends Controller
                 'code'            => 'P_4',
                 'category_name'   => 'Immunity-Wellness',
                 'subcategory_id'  => $request->input('subcategory_id'),
-                'subcategory_name'=> 'Shop By Category',
+                'subcategory_name' => 'Shop By Category',
                 'product_name'    => $request->input('product_name'),
                 'slug'            => Str::slug($request->input('product_name')),
                 'productheading'  => $request->input('productheading'),
@@ -149,7 +159,6 @@ class ProductController extends Controller
             }
 
             return ApiResponse::success(200, 'New product added successfully', $product);
-
         } catch (Throwable $e) {
             return ApiResponse::error(500, "Something went wrong: " . $e->getMessage());
         }
@@ -165,6 +174,9 @@ class ProductController extends Controller
      * @bodyParam productheading string Updated heading.
      * @bodyParam images file[] Optional new product images.
      * @return \Illuminate\Http\JsonResponse
+     * @authenticated
+     * @header Authorization Bearer {token}
+
      */
     public function updateProduct(Request $request)
     {
@@ -233,13 +245,12 @@ class ProductController extends Controller
 
             if ($product->isDirty()) {
                 $product->save();
-                 // Clear Redis cache for product listing
-            Cache::forget('all_products');
+                // Clear Redis cache for product listing
+                Cache::forget('all_products');
                 return ApiResponse::success(200, 'Product updated successfully', $product);
             } else {
                 return ApiResponse::success(200, 'No changes made to product');
             }
-
         } catch (Throwable $e) {
             return ApiResponse::error(500, 'Something went wrong: ' . $e->getMessage());
         }
@@ -251,22 +262,35 @@ class ProductController extends Controller
      * @group Products
      * @urlParam id required Product ID to delete.
      * @return \Illuminate\Http\JsonResponse
+     *
+     *
+    
+    
+     * 
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\RedirectResponse
+     * @header Authorization Bearer {token}
+
+     * @authenticated
      */
     public function deleteProduct($id)
     {
-        try {
-            $product = Product::findOrFail($id);
+        $product = Product::findOrFail($id);
 
-            if (!$product->delete()) {
-                return ApiResponse::error('500', "Product could not be deleted");
+        // Delete associated images if any
+        if (!empty($product->images)) {
+            $images = explode(',', $product->images);
+            foreach ($images as $image) {
+                $imagePath = 'products/' . ltrim($image, '/'); // Remove leading slash if exists
+                Storage::disk('public')->delete($imagePath);
             }
-                    // Clear the cached list of all products
-              Cache::forget('all_products');
-
-            return ApiResponse::success(200, 'Product deleted successfully');
-        } catch (Throwable $e) {
-            return ApiResponse::error(500, 'Something went wrong: ' . $e->getMessage());
         }
+
+        // Delete the product from the database
+        $product->delete();
+
+        return redirect()->back()->with('success', 'Product deleted successfully.');
     }
 
     /**
@@ -274,6 +298,8 @@ class ProductController extends Controller
      *
      * @group Products
      * @return \Illuminate\Http\JsonResponse
+     * @authenticated
+     * @header Authorization Bearer {token}
      */
     public function deleteAllProducts()
     {
@@ -288,8 +314,8 @@ class ProductController extends Controller
                 $product->delete();
             }
 
-             // Clear Redis cache for product listing
-             Cache::forget('all_products');
+            // Clear Redis cache for product listing
+            Cache::forget('all_products');
 
             return ApiResponse::success(200, 'All products deleted successfully');
         } catch (Throwable $e) {

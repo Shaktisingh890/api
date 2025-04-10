@@ -6,47 +6,6 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/products/getProducts/{id}'
-    metadata:
-      groupName: Products
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Get a single product by ID.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the product.'
-        required: true
-        example: '1'
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        custom: []
-    cleanUrlParameters:
-      id: '1'
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
     uri: api/v1/products/getAllProducts
     metadata:
       groupName: Products
@@ -55,9 +14,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Get all products.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {token}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -91,9 +51,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Delete a product by ID.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {token}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -132,9 +93,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Delete all products.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {token}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -162,9 +124,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Store a newly created product.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {token}'
       Content-Type: multipart/form-data
       Accept: application/json
     urlParameters: []
@@ -359,9 +322,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Update product by ID.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {token}'
       Content-Type: multipart/form-data
       Accept: application/json
     urlParameters:
